@@ -1,5 +1,9 @@
 module Wrappable
   
+  def inherited_wrappers
+    ancestors.grep(Wrappable).reverse.flat_map(&:wrappers)
+  end
+
   def wrappers
     @wrappers ||= []
   end
@@ -10,7 +14,7 @@ module Wrappable
 
   def new(*arguments, &block)
     instance = allocate
-    wrappers.each { |mod| instance.singleton_class.include(mod) }
+    inherited_wrappers.each { |mod| instance.singleton_class.include(mod) }
     instance.send(:initialize, *arguments, &block)
     instance
   end
