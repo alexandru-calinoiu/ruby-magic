@@ -1,6 +1,7 @@
+@foo = 1
+
 def bar
-    foo = 1
-    foo
+    @foo
 end
 
 p bar
