@@ -9,8 +9,6 @@ class Pigeon < Bird
   end
 end
 
-p Pigeon.ancestors.grep(Wrappable).reverse.flat_map(&:wrappers)
-
 p '------------'
 
 pigeon = Pigeon.new
