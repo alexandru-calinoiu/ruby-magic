@@ -1,2 +1,4 @@
 foo = 1
-p Proc.new { foo }.call
+proc = Proc.new { foo }
+foo = 2
+p proc.call
